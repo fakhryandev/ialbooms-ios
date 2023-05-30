@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var showingSheet = false
+    
     var body: some View {
         VStack {
             HStack{
@@ -18,11 +20,13 @@ struct ContentView: View {
                 
         
                 Button{
-                    
+                    showingSheet.toggle()
                 }label: {
                     Image(systemName: "person.circle")
                         .font(Font.system(.largeTitle)).foregroundColor(Color.red)
                     
+                }.sheet(isPresented: $showingSheet) {
+                    ProfileView()
                 }
             }
             
