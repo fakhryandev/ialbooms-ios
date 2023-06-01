@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct DetailView: View {
+    let id: Int
+    
     var body: some View {
         NavigationView{
             ScrollView(.vertical){
@@ -17,7 +19,7 @@ struct DetailView: View {
                             .resizable()
                             .frame(width: 200, height: 200)
                             .cornerRadius(20)
-                        Text("Nama Album")
+                        Text("\(id)")
                             .font(.title2)
                             .fontWeight(.bold)
                             .padding(.bottom, 1.0)
@@ -80,7 +82,7 @@ struct DetailView: View {
         .toolbar{
             ToolbarItem(placement: .primaryAction){
                 Button{
-
+                    
                 }label:{
                     Image(systemName: "star.circle.fill")
                         .foregroundColor(Color.black)
@@ -92,6 +94,6 @@ struct DetailView: View {
 
 struct DetailView_Previews: PreviewProvider {
     static var previews: some View {
-        DetailView()
+        DetailView(id: Int())
     }
 }

@@ -28,15 +28,15 @@ struct ProfileView: View {
                     .fontWeight(.regular)
                 
             }
-                .navigationTitle("About")
-                .navigationBarTitleDisplayMode(.inline)
-                .toolbar{
-                    ToolbarItem(placement: .primaryAction){
-                        Button("Selesai"){
-                            dismiss()
-                        }
+            .navigationTitle("About")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar{
+                ToolbarItem(placement: .primaryAction){
+                    Button("Selesai"){
+                        dismiss()
                     }
                 }
+            }
         }
     }
 }

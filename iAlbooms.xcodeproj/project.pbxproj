@@ -7,20 +7,28 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E70517EC2A282F5700510619 /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70517EB2A282F5700510619 /* Album.swift */; };
 		E75CA28B2A26326A009E11B6 /* iAlboomsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75CA28A2A26326A009E11B6 /* iAlboomsApp.swift */; };
-		E75CA28D2A26326A009E11B6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75CA28C2A26326A009E11B6 /* ContentView.swift */; };
+		E75CA28D2A26326A009E11B6 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75CA28C2A26326A009E11B6 /* HomeView.swift */; };
 		E75CA28F2A26326B009E11B6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E75CA28E2A26326B009E11B6 /* Assets.xcassets */; };
 		E75CA2922A26326B009E11B6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E75CA2912A26326B009E11B6 /* Preview Assets.xcassets */; };
+		E76391BA2A2832840075AA27 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E76391B92A2832840075AA27 /* HomeViewModel.swift */; };
+		E76391BD2A2836070075AA27 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E76391BC2A2836070075AA27 /* APIService.swift */; };
+		E76391BF2A285FFB0075AA27 /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = E76391BE2A285FFB0075AA27 /* Song.swift */; };
 		E77AE4BC2A265F740087BD1C /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77AE4BB2A265F740087BD1C /* ProfileView.swift */; };
 		E7AD97232A277BA10053641D /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7AD97222A277BA10053641D /* DetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E70517EB2A282F5700510619 /* Album.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
 		E75CA2872A26326A009E11B6 /* iAlbooms.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iAlbooms.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E75CA28A2A26326A009E11B6 /* iAlboomsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iAlboomsApp.swift; sourceTree = "<group>"; };
-		E75CA28C2A26326A009E11B6 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		E75CA28C2A26326A009E11B6 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		E75CA28E2A26326B009E11B6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E75CA2912A26326B009E11B6 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		E76391B92A2832840075AA27 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		E76391BC2A2836070075AA27 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		E76391BE2A285FFB0075AA27 /* Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
 		E77AE4BB2A265F740087BD1C /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		E7AD97222A277BA10053641D /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -36,6 +44,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E70517E92A282E9200510619 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E70517EB2A282F5700510619 /* Album.swift */,
+				E76391BE2A285FFB0075AA27 /* Song.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E70517EA2A282EA100510619 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				E76391B92A2832840075AA27 /* HomeViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		E75CA27E2A263269009E11B6 = {
 			isa = PBXGroup;
 			children = (
@@ -55,12 +80,13 @@
 		E75CA2892A26326A009E11B6 /* iAlbooms */ = {
 			isa = PBXGroup;
 			children = (
+				E76391BB2A2835F60075AA27 /* Helpers */,
+				E70517EA2A282EA100510619 /* ViewModel */,
+				E70517E92A282E9200510619 /* Model */,
+				E76138FD2A282CCB0014D988 /* View */,
 				E75CA28A2A26326A009E11B6 /* iAlboomsApp.swift */,
-				E75CA28C2A26326A009E11B6 /* ContentView.swift */,
 				E75CA28E2A26326B009E11B6 /* Assets.xcassets */,
 				E75CA2902A26326B009E11B6 /* Preview Content */,
-				E77AE4BB2A265F740087BD1C /* ProfileView.swift */,
-				E7AD97222A277BA10053641D /* DetailView.swift */,
 			);
 			path = iAlbooms;
 			sourceTree = "<group>";
@@ -71,6 +97,24 @@
 				E75CA2912A26326B009E11B6 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		E76138FD2A282CCB0014D988 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E75CA28C2A26326A009E11B6 /* HomeView.swift */,
+				E77AE4BB2A265F740087BD1C /* ProfileView.swift */,
+				E7AD97222A277BA10053641D /* DetailView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E76391BB2A2835F60075AA27 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				E76391BC2A2836070075AA27 /* APIService.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -143,7 +187,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E75CA28D2A26326A009E11B6 /* ContentView.swift in Sources */,
+				E70517EC2A282F5700510619 /* Album.swift in Sources */,
+				E76391BD2A2836070075AA27 /* APIService.swift in Sources */,
+				E76391BA2A2832840075AA27 /* HomeViewModel.swift in Sources */,
+				E75CA28D2A26326A009E11B6 /* HomeView.swift in Sources */,
+				E76391BF2A285FFB0075AA27 /* Song.swift in Sources */,
 				E7AD97232A277BA10053641D /* DetailView.swift in Sources */,
 				E77AE4BC2A265F740087BD1C /* ProfileView.swift in Sources */,
 				E75CA28B2A26326A009E11B6 /* iAlboomsApp.swift in Sources */,
