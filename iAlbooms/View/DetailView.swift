@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct DetailView: View {
-    let id: Int
+    @State var album: Album
+    @ObservedObject var viewModel = HomeViewModel()
     
     var body: some View {
         NavigationView{
@@ -19,29 +20,30 @@ struct DetailView: View {
                             .resizable()
                             .frame(width: 200, height: 200)
                             .cornerRadius(20)
-                        Text("\(id)")
+                        Text(album.albumName)
                             .font(.title2)
                             .fontWeight(.bold)
                             .padding(.bottom, 1.0)
                             .padding(.top, 2.0)
                         
-                        Text("Nama Band")
+                        Text(album.artistName)
                             .font(.headline)
                             .fontWeight(.regular)
                             .padding(.vertical, 2.0)
                         HStack{
-                            Text("Genre")
+                            Text(album.albumGenre)
                                 .font(.footnote)
                             
-                            Text("Tahun")
+                            Text(album.albumYear)
                                 .font(.footnote)
                         }.padding(.vertical, 2.0)
                     }.padding(.vertical, 0)
                     
-                    Text("Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet")
+                    Text(album.albumDescription)
                         .padding(.horizontal)
                         .padding(.bottom, 10.0)
                         .font(.caption)
+                        .frame(maxWidth: .infinity, alignment: .leading)
                     
                     Group{
                         Divider()
@@ -64,8 +66,8 @@ struct DetailView: View {
                         Divider()
                         
                         Group{
-                            Text("dd MM yyy")
-                            Text("jumlah, durasi")
+                            Text(album.albumDate)
+                            Text(album.albumDuration)
                         }
                         .font(.caption)
                         .foregroundColor(Color.gray)
@@ -82,18 +84,24 @@ struct DetailView: View {
         .toolbar{
             ToolbarItem(placement: .primaryAction){
                 Button{
-                    
+                    updateIsFavorite(withID: album.id)
                 }label:{
                     Image(systemName: "star.circle.fill")
-                        .foregroundColor(Color.black)
+                        .foregroundColor(album.isFavorite ? Color.red : Color.black)
                 }
             }
         }
+    }
+    
+    func updateIsFavorite(withID id:Int) {
+        album.isFavorite.toggle()
+        
+        viewModel.updateIsFavorite(withID: id)
     }
 }
 
 struct DetailView_Previews: PreviewProvider {
     static var previews: some View {
-        DetailView(id: Int())
+        DetailView(album: Album(id: 0, albumName: "Test", albumYear: "Test", albumGenre: "Test", albumDescription: "Test", albumDate: "Test", albumDuration: "test", artistName: "Test"))
     }
 }

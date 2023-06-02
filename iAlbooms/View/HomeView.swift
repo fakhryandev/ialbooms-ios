@@ -17,54 +17,53 @@ struct HomeView: View {
             if case .LOADING = viewModel.currentState{
                 loaderView()
             }else if case .SUCCESS(let albums) = viewModel.currentState{
-                NavigationView{
+                NavigationStack{
                     ScrollView{
                         VStack {
-                            //                            HStack{
-                            //                                Text("Dengarkan")
-                            //                                    .font(.largeTitle)
-                            //                                    .fontWeight(.bold)
-                            //                                    .frame(maxWidth: .infinity, alignment: .leading)
-                            //                                Button{
-                            //                                    showingSheet.toggle()
-                            //                                }label: {
-                            //                                    Image(systemName: "person.circle")
-                            //                                        .font(Font.system(.largeTitle)).foregroundColor(Color.red)
-                            //                                }.sheet(isPresented: $showingSheet) {
-                            //                                    ProfileView()
-                            //                                }
-                            //                            }
-                            //                            .padding(.bottom, 20)
-                            
-                            Button{
-                                
-                            }label: {
-                                Group{
-                                    Text("Favorit")
-                                        .foregroundColor(Color.black)
-                                    Image(systemName:"greaterthan" ).foregroundColor(Color.gray).font(.body)
-                                }
-                                .font(.title2).fontWeight(.semibold)
+                            let favoriteAlbums = albums.filter{ album in
+                                return album.isFavorite
                             }
-                            .frame(maxWidth: .infinity, alignment: .leading)
                             
-                            favoriteView(favoriteAlbum: albums)
+                            if favoriteAlbums.count != 0 {
+                                Button{
+                                    
+                                }label: {
+                                    Group{
+                                        Text("Favorit")
+                                            .foregroundColor(Color.black)
+                                        Image(systemName:"greaterthan" ).foregroundColor(Color.gray).font(.body)
+                                    }
+                                    .font(.title2).fontWeight(.semibold)
+                                }
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                
+                                favoriteView(favoriteAlbum: favoriteAlbums)
+                                
+                                Divider()
+                                    .padding(.vertical)
+                            }
                             
                             albumListView(albums: albums)
                             
                             Spacer()
-                        }.padding(.leading)
+                        }
+                        .padding(.leading)
                     }
-                    .navigationBarTitle("Dengarkan")
-                    //                    .navigationBarItems(trailing:
-                    //                                            Button{
-                    //                        showingSheet.toggle()
-                    //                    }label: {
-                    //                        Image(systemName: "person.circle")
-                    //                            .font(Font.system(.largeTitle)).foregroundColor(Color.red)
-                    //                    }.sheet(isPresented: $showingSheet) {
-                    //                        ProfileView()
-                    //                    })
+                    .navigationTitle("Dengarkan")
+                    .toolbar{
+                        ToolbarItem(placement: .navigationBarTrailing){
+                            Button{
+                                showingSheet.toggle()
+                            }label: {
+                                Image(systemName: "person.circle")
+                                    .font(Font.system(.title3)).foregroundColor(Color.red)
+                            }.sheet(isPresented: $showingSheet) {
+                                ProfileView()
+                            }
+                        }
+                        
+                    }
+                    
                 }
             }else if case .FAILURE(let error) = viewModel.currentState{
                 VStack(alignment: .center){
@@ -85,14 +84,14 @@ func albumListView(albums: [Album]) -> some View {
         GridItem(spacing: 0),
     ]
     
-    return LazyVGrid(columns: columns, spacing: 50){
+    return LazyVGrid(columns: columns){
         ForEach(albums){ album in
-            NavigationLink(destination: DetailView(id: album.id)){
+            NavigationLink(destination: DetailView(album: album)){
                 HStack{
                     Image(systemName: "play.rectangle.fill"
                     )
                     .resizable()
-                    .frame(width: 150, height: 150)
+                    .frame(width: 100, height: 100)
                     
                     VStack{
                         Text(album.albumName)
@@ -109,11 +108,14 @@ func albumListView(albums: [Album]) -> some View {
                     }
                 }
             }
+            
+            if album.id != albums.count {
+                Divider()
+            }
         }
         
     }
     .frame(maxWidth: .infinity, alignment: .leading)
-    .padding(.top, 30)
     .padding(.trailing)
 }
 
@@ -122,7 +124,7 @@ func favoriteView(favoriteAlbum: [Album]) -> some View {
         HStack (spacing: 15){
             ForEach(favoriteAlbum) { album in
                 
-                NavigationLink(destination: DetailView(id: album.id)){
+                NavigationLink(destination: DetailView(album: album)){
                     VStack(alignment: .leading){
                         Image(systemName: "play.rectangle.fill")
                             .resizable()
